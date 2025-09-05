@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Surprise Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall 3s linear infinite;
+      color: #ff4d6d;
+      z-index: 10;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-pink-100 text-gray-800 font-sans relative">
+
+  <!-- Click My Wish Button & Card -->
+  <div class="flex flex-col items-center justify-center min-h-screen p-4">
+    <button id="wishBtn" class="bg-red-500 text-white px-6 py-3 rounded-lg shadow hover:bg-red-600 transition">
+      Click My Wish 💌
+    </button>
+
+    <div id="cardBox" class="hidden mt-6 bg-white rounded-xl shadow-lg p-6 w-full max-w-md text-center space-y-4">
+      <img src="images/boy.jpg" alt="wish" class="w-30 h-30  rounded-full mx-auto" > 
+      <h2 class="text-xl font-bold">My Princess 💖</h2>
+      <p class="text-2xl font-semibold"><h1>
+        ඉතින් කොහොමද මේක හොදයිද..හැමදාම එකම විදිහට wish කරද්දි මටත් boring එකම විදිහට wish එන ඔයාටත් boring.
+        ඉතින් මම හිතුවා මම ඉගෙන ගත්ත දේවල් වලින්ම මොකක් හරි කරොත් හොදයි කියලා.ඉතින් මේ වැඩේ කරා.මේ කෝඩ් ලියද්දී screen record දාන්න බැරි උනානේ 
+        🥲 දවස් ගානක් රෑට රෑට වගේ තමා කෝඩ් එක ලිවුවේ.වැඩේ චූටි එකක් උනාට කෝඩ් එකනම් චූටි නෑ.මන් පහලින් පොඩි වීඩියෝ කෑල්ලක් දාලා තියන්නම්කෝ.
+        ඉතින් තව මාස එකහමාරකින් පස්සේ මට ඔයාව දකින්න පුලුවන් වෙයිද දන්නෙත් නෑ.බලමුකෝ ඉස්සරහට මොකද වෙන්නෙ කියලා.
+        මොකක් උනත් පරිස්සමට ඔයාගෙ වැඩ ටික කරගෙන ඉන්න.මන් ඔය නිර්මාණාත්මක විදිහට වචන ගලපන්න නම් දන්නෑ🥴 අහුවෙන විදිහට ටයිප් කරන් යනවා.
+        හැමදාමත් ආදරෙයි 🤍🫶
+...</h1> <br>
+        <strong>මීට ඔයාගේ ආදරණීය,<br>ලාවණ්‍ය</strong>
+      </p>
+        <img src="images/kiss.gif" alt="wish" class="w-24 h-24  rounded-full mx-auto" > 
+        <p class="text-bold"class="mx-auto">
+          පහළට යමු
+      </p>
+    </div>
+  </div>
+
+  <!-- මගේ මහන්සිය Section -->
+  <section class="bg-white py-8 relative">
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-bold text-pink-600">Photos/Videos</h2>
+      <button id="openPanelBtn" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition">
+        බලන්න 🔍
+      </button>
+    </div>
+  </section>
+
+  <!-- Overlay (click to close panel) -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden z-40"></div>
+
+  <!-- Side Panel -->
+  <div id="sidePanel" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+    <div class="p-4 border-b flex justify-between items-center">
+      <h3 class="text-lg font-semibold">මගේ වැඩ</h3>
+      <button id="closePanelBtn" class="text-gray-500 hover:text-red-500 text-xl">&times;</button>
+    </div>
+    <div class="p-4 space-y-4">
+      <img src="images/img 1.png" alt="Photo 1" class="rounded-lg shadow w-full">
+      <img src="images/img 2.png" alt="Photo 2" class="rounded-lg shadow w-full">
+   <iframe src="https://drive.google.com/file/d/1scgcu3ASyKoGPcTLOvnyPY9pOKNFvGxg/preview" 
+        width="100%" height="315" 
+        allow="autoplay" 
+        class="rounded-lg shadow">
+</iframe>
+
+
+
+    </div>
+  </div>
+
+  <!-- WhatsApp Message Button -->
+  <div class="text-center py-10">
+    <h2 class="text-lg font-semibold mb-4">මැසේජ් එකක් දාන්න</h2>
+    <a href="https://wa.me/94717655274" target="_blank">
+      <button class="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition">
+        WhatsApp එකට යන්න
+      </button>
+    </a>
+  </div>
+
+  <!-- Hearts Container -->
+  <div id="heartsContainer" class="pointer-events-none absolute inset-0 z-0"></div>
+
+  <!-- JavaScript -->
+  <script>
+    const openpanelBtn = document.getElementById("openPanelBtn");
+    const closepanelBtn = document.getElementById("closePanelBtn");
+    const sidePanel = document.getElementById("sidePanel");
+    const overlay = document.getElementById("overlay");
+
+    openpanelBtn.addEventListener("click", () => {
+      sidePanel.classList.remove("translate-x-full");
+      overlay.classList.remove("hidden");
+    });
+
+    function closePanel() {
+      sidePanel.classList.add("translate-x-full");
+      overlay.classList.add("hidden");
+    }
+
+    closepanelBtn.addEventListener("click", closePanel);
+    overlay.addEventListener("click", closePanel);
+
+    const wishBtn = document.getElementById("wishBtn");
+    const cardBox = document.getElementById("cardBox");
+    const heartsContainer = document.getElementById("heartsContainer");
+
+    wishBtn.addEventListener("click", () => {
+      cardBox.classList.remove("hidden");
+      startHearts();
+    });
+
+    function startHearts() {
+      const heartInterval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        const randomLeft = Math.random() * 100;
+        heart.style.left = `${randomLeft}vw`;
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        const emojis = ["💖", "❤️", "💕", "💘"];
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heartsContainer.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }, 100);
+      setTimeout(() => clearInterval(heartInterval), 10000);
+    }
+  </script>
+</body>
+</html>
